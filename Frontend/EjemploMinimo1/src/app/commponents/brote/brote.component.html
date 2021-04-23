@@ -1,0 +1,105 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<div class="row justify-content-center">
+    <h1 class="display-4">Mínim 1 Gerard Belvis Pràctica</h1>    
+</div>
+
+<div class= "row justify-content-center">
+    <h4>Brotes COVID</h4>
+</div>
+
+<div class="card-deck">
+    <div class="card text-white bg-info">
+        <div class="card-header">
+            <h5>Brote List</h5>
+        </div>
+      <div class="card-body">
+        <p class="card-text">This are the brotes</p>
+        <button class ="btn btn-light" (click)="getBrotes()">Refresh</button>
+        <ul class="list-group">
+            <li *ngFor="let brote of broteList; let i = index"
+            class="list-group-item list-group-item-action"
+            (click)="getBrote(i)">
+            {{ brote.name }}
+            </li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    <div class="card text-white bg-warning">
+        <div class="card-header">
+            <h5>Edit Brote</h5>
+        </div>
+      <div class="card-body">
+        <p class="card-text">Edit what you want.</p>
+        <form [formGroup]="editBroteForm" (ngSubmit)="editBrote()">
+            <div class="form-group">
+                <label>Name</label>
+                <input [class.is-invalid]="editBroteForm.get('broteNameEdit').touched && editBroteForm.get('broteNameEdit').invalid" 
+                type="text" class="form-control" formControlName="broteNameEdit" placeholder="Brote name" [(ngModel)] = "selectedBrote.name">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input [class.is-invalid]="editBroteForm.get('broteDescriptionEdit').touched && editBroteForm.get('broteDescriptionEdit').invalid" 
+                type="text" class="form-control" formControlName="broteDescriptionEdit" placeholder="Brote description" [(ngModel)] = "selectedBrote.description">
+            </div>
+            <div class="form-group">
+                <label>Initial Date</label>
+                <input [class.is-invalid]="editBroteForm.get('broteInitialDateEdit').touched && editBroteForm.get('broteInitialDateEdit').invalid" 
+                type="text" class="form-control" formControlName="broteInitialDateEdit" placeholder="Brote initial date" [(ngModel)] = "selectedBrote.initialdate">
+            </div>
+            <div class="form-group">
+                <label>Final Date</label>
+                <input [class.is-invalid]="editBroteForm.get('broteFinalDateEdit').touched && editBroteForm.get('broteFinalDateEdit').invalid" 
+                type="text" class="form-control" formControlName="broteFinalDateEdit" placeholder="Brote final date" [(ngModel)] = "selectedBrote.finaldate">
+            </div>
+            <div class="span6" style="float: none; margin: 0 auto;">
+                <button class="btn btn-light" type="submit" [disabled]="!editBroteForm.valid">Edit Brote</button> 
+            </div>
+        </form>
+      </div>
+
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+    <div class="card text-white bg-danger">
+        <div class="card-header">
+            <h5>Add Brote</h5>
+        </div>
+      <div class="card-body">
+        <p class="card-text">Add your brote.</p>
+        <form [formGroup]="addBroteForm" (ngSubmit)="addBrote()">
+            <div class="form-group">
+                <label>Name</label>
+                <input [class.is-invalid]="addBroteForm.get('broteNameInput').touched && addBroteForm.get('broteNameInput').invalid" 
+                type="text" class="form-control" formControlName="broteNameInput" placeholder="Enter Brote name">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <input [class.is-invalid]="addBroteForm.get('broteDescriptionInput').touched && addBroteForm.get('broteDescriptionInput').invalid" 
+                type="text" class="form-control" formControlName="broteDescriptionInput" placeholder="Enter Brote description">
+            </div>
+            <div class="form-group">
+                <label>Initial Date</label>
+                <input [class.is-invalid]="addBroteForm.get('broteInitialDateInput').touched && addBroteForm.get('broteInitialDateInput').invalid" 
+                type="date" class="form-control" formControlName="broteInitialDateInput" placeholder="Enter Brote initial date">
+            </div>
+            <div class="form-group">
+                <label>Final Date</label>
+                <input [class.is-invalid]="addBroteForm.get('broteFinalDateInput').touched && addBroteForm.get('broteFinalDateInput').invalid" 
+                type="date" class="form-control" formControlName="broteFinalDateInput" placeholder="Enter Brote final date">
+            </div>
+            <div class="span6" style="float: none; margin: 0 auto;">
+                <button class="btn btn-light" type="submit" [disabled]="!addBroteForm.valid">Create Brote</button> 
+            </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">Last updated 3 mins ago</small>
+      </div>
+    </div>
+  </div>
+
